@@ -1,11 +1,19 @@
 from django.contrib import admin
 from .models import Restaurant, FoodItem, MyUser, Table, BookingRecord, FoodOrder,RestaurantCategories
+from import_export.admin import ImportExportModelAdmin
+from .resources import FoodItemResource
 
 class RestaurantAdmin(admin.ModelAdmin):
     list_display = ['name', 'location', 'min_price', 'max_price', 'tables', 'seats']
 
-class FoodAdmin(admin.ModelAdmin):
+# class FoodAdmin(admin.ModelAdmin):
+#     list_display = ['restaurant', 'title', 'price']
+
+class FoodAdmin(ImportExportModelAdmin):
+    resource_class = FoodItemResource
     list_display = ['restaurant', 'title', 'price']
+    search_fields  = ('restaurant__name', 'title', 'price')
+
 class detailsAdmin(admin.ModelAdmin):
     list_display = ['user', 'address', 'phone']
 class tablesAdmin(admin.ModelAdmin):

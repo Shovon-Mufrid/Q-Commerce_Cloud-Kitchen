@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jazzmin',
     'App_Cloud',
+    'import_export'
 ]
 
 MIDDLEWARE = [
